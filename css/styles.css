@@ -1,0 +1,101 @@
+* {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+}
+
+/*CONTAINER STYLES*/
+.container {
+	max-width: 80%;
+	margin: 0 auto;
+}
+
+nav {
+	background-color: #FFB4B0;
+	border: 2px solid #000;
+	width: 97%;
+	margin: 0 auto;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+aside {
+	width: 25%;
+	float: left;
+	background-color: #4DD7FA;
+	border: 2px solid #000;
+	margin: 1em;
+	padding: 0.3em;
+}
+
+main {
+	width: 75%;
+	float: right;
+	background-color: #FEFAC0;
+	border: 2px solid #000;
+	margin: 1em;
+	padding: 1em 2em;
+}
+
+fieldset {
+	border: 0;
+}
+
+fieldset#button {
+	display: flex;
+	padding: 3em;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+/*LIST STYLES*/
+ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+}
+
+main ul {
+	margin-bottom: 3em;
+	padding: 0;
+}
+
+li {
+	margin-left: 0.3em;
+}
+
+main li {
+	margin:0.1em 0 0 0;
+}
+
+li + li::before {
+    content: " | ";
+    margin: 0.5em;
+}
+
+/*TEXT STYLES*/
+h3 {
+	margin-bottom: 0.1em;
+	color: #785616;
+	font-size: 1.8em;
+}
+
+aside p {
+	margin-bottom: 0;
+
+}
+
+/*FORM STYLES*/
+button {
+	margin: 0 auto;
+	height: 50px;
+	font-size: 1.5em;
+	border: 1px solid #000;
+	background-color: #eee;
+}
+

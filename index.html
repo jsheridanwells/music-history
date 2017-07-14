@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Music History</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+	<body>
+		<div class="container">
+			<nav>
+				<ul>
+					<li><a href="#">View Music</a></li>
+					<li><a href="#"> Add Music</a></li>
+					<li><a href="#">Profile</a></li>
+				</ul>
+			</nav>
+			<div class="wrapper">
+				<aside>
+					<form>
+						<p>Song Length:</p>
+						<input type="range" id="length">
+
+						<fieldset id="artist-album-select">
+							<p>Artist:</p>
+							<select id="artist">
+								<option value="">Grateful Dead</option>
+								<option value="">Bob Weir</option>
+								<option value="">Dylan and the Dead</option>
+								<option value="">Phil Lesh and Friends</option>
+								<option value="">Ratdog</option>
+							</select>
+							<p>Album:</p>
+							<select id="albums">
+								<option value="">Workingman's Dead</option>
+								<option value="">Blue Mountain</option>
+								<option value="">Dylan and the Dead</option>
+								<option value="">There and Back Again</option>
+								<option value="">Evening Moods</option>
+							</select>
+						</fieldset>
+
+						<fieldset id="genre-select">
+							<p>Genre:</p>
+							<div class="row">
+								<div class="col-1">
+									<input type="checkbox" value="rock" id="rock">
+									<label for="rock">Rock</label><br>
+									<input type="checkbox" value="classical" id="classical">
+									<label for="classical">Classical</label><br>
+									<input type="checkbox" value="pop" id="pop">
+									<label for="pop">Pop</label>
+								</div>
+								<div class="col-2">
+									<input type="checkbox" value="jazz" id="jazz">
+									<label for="jazz">Jazz</label><br>
+									<input type="checkbox" value="blues" id="blues">
+									<label for="blues">Blues</label><br>
+									<input type="checkbox" value="hip-hop" id="hip-hop">
+									<label for="">Hip Hop</label>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset id="button">
+							<button type="button" id="filter">Filter</button>
+						</fieldset>
+					</form>
+				</aside>
+				<main>
+					<h3>Song Name</h3>
+					<ul>
+						<li>Song Name</li>
+						<li>Album Name</li>
+						<li>Genre</li>
+					</ul>
+					<h3>Song Name</h3>
+					<ul>
+						<li>Song Name</li>
+						<li>Album Name</li>
+						<li>Genre</li>
+					</ul>
+					<h3>Song Name</h3>
+					<ul>
+						<li>Song Name</li>
+						<li>Album Name</li>
+						<li>Genre</li>
+					</ul>
+				</main>
+			</div>
+		</div>
+		<script src="js/main.js"></script>
+	</body>
+</html>
