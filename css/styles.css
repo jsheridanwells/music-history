@@ -16,8 +16,8 @@ nav {
 	margin: 0 auto;
 }
 
-.list-music-view {
-	display: none;
+#list-music-view {
+	display: flex;
 	flex-direction: row;
 
 }
@@ -109,22 +109,22 @@ button {
 
 /*ADD MUSIC VIEW*/
 
-.add-music-view {
+#add-music-view {
 	position: fixed;
 	z-index: 10;
 	top: 15%;
 	left:40%;
-	display: flex;
+	display: none;
 	flex-direction: column;
 }
 
-.add-music-view input {
+#add-music-view input {
 	border: 2px solid #000;
 	width: 20em;
 	height: 1.5em;
 }
 
-.add-music-view button {
+#add-music-view button {
 	margin: 20px 0;
 	border: 2px solid #000;
 	width: 7em;
