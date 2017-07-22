@@ -9,12 +9,11 @@
 		<div class="container">
 			<nav>
 				<ul>
-					<li><a href="#">View Music</a></li>
-					<li><a href="#"> Add Music</a></li>
-					<li><a href="#">Profile</a></li>
+					<li><a href="#" class="disabled" id="list-show">List Music</a></li>
+					<li><a href="#" id="add-show"> Add Music</a></li>
 				</ul>
 			</nav>
-			<div class="wrapper">
+			<div id="list-music-view">
 				<aside>
 					<form>
 						<p>Song Length:</p>
@@ -65,8 +64,8 @@
 						</fieldset>
 					</form>
 				</aside>
-				<main>
-					<h3>Song Name</h3>
+				<main id="main">
+					<!-- <h3>Song Name</h3>
 					<ul>
 						<li>Song Name</li>
 						<li>Album Name</li>
@@ -83,10 +82,20 @@
 						<li>Song Name</li>
 						<li>Album Name</li>
 						<li>Genre</li>
-					</ul>
+					</ul> -->
 				</main>
 			</div>
+			<div id="add-music-view">
+				<label for="name-field">Song Name:</label>
+				<input type="text" name="name" id="song-field"><br>
+				<label for="artist-field">Artist:</label>
+				<input type="text" name="artist" id="artist-field"><br>
+				<label for="album-field">Album:</label>
+				<input type="text" name="album" id="album-field">
+				<button type="button" id="add-music-button">Add </button>
+			</div>
 		</div>
-		<script src="js/main.js"></script>
+		<script src="js/ui.js"></script>
+		<script src="js/make_playlist.js"></script>
 	</body>
 </html>
