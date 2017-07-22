@@ -16,9 +16,10 @@ nav {
 	margin: 0 auto;
 }
 
-.wrapper {
-	display: flex;
+.list-music-view {
+	display: none;
 	flex-direction: row;
+
 }
 
 aside {
@@ -53,7 +54,7 @@ fieldset#button {
 	flex-direction: row;
 }
 
-/*LIST STYLES*/
+/*LIST AND LINK STYLES*/
 ul {
 	list-style-type: none;
 	display: flex;
@@ -78,6 +79,13 @@ li + li::before {
     margin: 0.5em;
 }
 
+a.disabled {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+	color: initial;
+}
+
 /*TEXT STYLES*/
 h3 {
 	margin-bottom: 0.1em;
@@ -98,4 +106,48 @@ button {
 	border: 1px solid #000;
 	background-color: #eee;
 }
+
+/*ADD MUSIC VIEW*/
+
+.add-music-view {
+	position: fixed;
+	z-index: 10;
+	top: 15%;
+	left:40%;
+	display: flex;
+	flex-direction: column;
+}
+
+.add-music-view input {
+	border: 2px solid #000;
+	width: 20em;
+	height: 1.5em;
+}
+
+.add-music-view button {
+	margin: 20px 0;
+	border: 2px solid #000;
+	width: 7em;
+	height: 1.5em;
+	font-size: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
