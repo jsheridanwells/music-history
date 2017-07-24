@@ -8,7 +8,6 @@ let showAdd = ()=> {
 	addShow.classList.add('disabled');
 	list.style = 'display: none';
 	add.style = 'display: flex';
-	console.log("working");
 }
 
 let showList = ()=> {
@@ -16,7 +15,6 @@ let showList = ()=> {
 	addShow.classList.remove('disabled');
 	list.style = 'display: flex';
 	add.style = 'display: none';
-	console.log("working also");
 }
 
 addShow.addEventListener('click', showAdd);
