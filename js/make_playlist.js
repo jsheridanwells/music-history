@@ -45,7 +45,7 @@ addButton.addEventListener('click', ()=> {
 	resetForm();
 });
 
-document.addEventListener('keyup', (e)=> {
+document.addEventListener('keyup', (e)=>{
 	if (e.which === 13) {
 		addEntry();
 		showPlaylist();
@@ -53,6 +53,8 @@ document.addEventListener('keyup', (e)=> {
 		resetForm();
 	}
 });
+
+
 
 // STATUS:  how do I set up enter key so that it only works when 
 // 'addmusic ' is shown????
