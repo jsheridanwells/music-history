@@ -28,6 +28,7 @@ var Music = (function(){
 	}
 
 	let	showPlaylist = (song, artist, album) => {
+		let mainrow = document.getElementById('main-row');
 		let entry = document.createElement('div');
 		let entryText = `
 		  <h3>${song}</h3>
@@ -38,7 +39,7 @@ var Music = (function(){
 			</ul>
 		`;
 		entry.innerHTML = entryText;
-		main.appendChild(entry);
+		main.insertBefore(entry, mainRow);
 	}
 
 	return {
