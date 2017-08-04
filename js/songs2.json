@@ -1,0 +1,28 @@
+[
+		{
+			"song": "Battery",
+			"artist": "Metallica",
+			"album": "Master of Puppets"
+		},
+		{
+			"song": "Aces High",
+			"artist": "Iron Maiden",
+			"album": "Powerslave"
+		},
+		{
+			"song": "Wake Up Dead",
+			"artist": "Megadeth",
+			"album": "Peace Sells..."
+		},
+		{
+			"song": "Among the Living",
+			"artist": "Anthrax",
+			"album": "Among the Living"
+		},
+		{
+			"song": "Painkiller",
+			"artist": "Judas Priest",
+			"album": "Painkiller"
+		}
+
+]
