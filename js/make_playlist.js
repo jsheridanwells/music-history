@@ -28,7 +28,7 @@ var Music = (function(){
 	}
 
 	let	showPlaylist = (song, artist, album) => {
-		let mainrow = document.getElementById('main-row');
+		let mainRow = document.getElementById('main-row');
 		let entry = document.createElement('div');
 		let entryText = `
 		  <h3>${song}</h3>
@@ -42,11 +42,6 @@ var Music = (function(){
 		main.insertBefore(entry, mainRow);
 	}
 
-	return {
-		getMain: () => {
-			return main;
-		}
-	}
 
 	addButton.addEventListener('click', ()=> {
 		console.log("clicking", );
@@ -64,5 +59,10 @@ var Music = (function(){
 			resetForm();
 		}
 	});
+	return {
+		getMain: () => {
+			return main;
+		}
+	}
 }());
 
