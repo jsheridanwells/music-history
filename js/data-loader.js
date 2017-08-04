@@ -2,7 +2,7 @@ var Music = (function(obj){
 	let _songData = [];
 	let more = document.getElementById('more');
 
-	obj.loadSongData = (callback, url) => {
+	obj.loadSongData = (callback, url) => {  //loads data from secified JSON (url)
 		let xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function() {
 			_songData = JSON.parse(xhr.responseText);
@@ -12,7 +12,7 @@ var Music = (function(obj){
 		xhr.send();
 	};
 
-	obj.showSongs = (data) => {
+	obj.showSongs = (data) => {  //inserts data from XHR into page
 		for (let i = 0; i < data.length; i++) {
 			let main = Music.getMain();
 			let mainRow = document.getElementById('main-row');
@@ -30,12 +30,10 @@ var Music = (function(obj){
 		}
 	};
 
-	window.addEventListener('load', function() {
-		
+	window.addEventListener('load', function() {  //displays first set of songs on page load
 		Music.loadSongData(Music.showSongs, 'js/songs1.json');
 	});
-	more.addEventListener('click', function() {
-		console.log("more working");
+	more.addEventListener('click', function() {  //displays next set of songs when "more" clicked
 		Music.loadSongData(Music.showSongs, 'js/songs2.json');
 	});
 
