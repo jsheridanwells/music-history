@@ -30,6 +30,7 @@ var Music = (function(){
 		Music.showPlaylist(newSong);
 	}
 
+
 	function clearForm() {
 		$('#song-field').val('');
 		$('#artist-field').val('');
