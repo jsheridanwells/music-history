@@ -6,7 +6,7 @@ var Music = (function(obj){
 		Music.showPlaylist(_data);
 	}
 
-	//loads json file and executes function w/ given url
+	//loads json file and executes function w/ given an url
 	obj.loadData = function(callback, url) {
 		$.ajax({
 			url: url,
