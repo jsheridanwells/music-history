@@ -1,27 +1,33 @@
 'use strict';
-let Ui = require('./ui.js');
+let _songs = [];
 
 
-let Music = {};
-
-//callback function to make json data available to playlist functions
-Music.getData = function(data) {
-	let _data = data;
-	Ui.showPlaylist(_data);
+let Music = {
+	//load all music from the database when given an url
+	loadSongs: function(url) {
+		return new Promise((resolve, reject)=>{
+			$.ajax({
+				url: url
+			})
+			.done((data)=>{
+				resolve(data);
+				data.forEach((item)=>{
+					_songs.push(item);
+				});
+				console.log("songs", _songs);
+			}).fail((xhr, status, error) => {
+				reject(error);
+			});
+		});
+	},
+	//send songs data
+	getSongs: function() {
+		return _songs;
+	}
 };
 
-//loads json file and executes function w/ given an url
-Music.loadData = function(callback, url) {
-	$.ajax({
-		url: url,
-		async: true
-	}).done(function(data){
-		callback(data);
-	});
-};
+// $(window).ready(()=>{
+// 	Music.loadSongs('../js/songs1.json');
+// });
 
-//on document load, loads first json data
-$(document).ready(function() {
-	Music.loadData(Music.getData, './js/songs1.json');
-});
-
+module.exports = Music;
