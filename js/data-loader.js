@@ -14,7 +14,6 @@ let Music = {
 				data.forEach((item)=>{
 					_songs.push(item);
 				});
-				console.log("songs", _songs);
 			}).fail((xhr, status, error) => {
 				reject(error);
 			});
@@ -25,9 +24,5 @@ let Music = {
 		return _songs;
 	}
 };
-
-// $(window).ready(()=>{
-// 	Music.loadSongs('../js/songs1.json');
-// });
 
 module.exports = Music;

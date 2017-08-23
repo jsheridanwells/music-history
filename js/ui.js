@@ -1,24 +1,21 @@
 'use strict';
-let Ui = {};
+let Filter = require('./filter.js');
+let Music = require('./data-loader.js');
 
-let $mainRow = $('#main-row');
-
-//makes playlist with song data and appends to dom
-Ui.showPlaylist = function (data) {
+//creates selectors with each item in an array as an option
+function makeSelector(arr, selectId) {
 	let content = '';
-	let $newDiv = $('<div></div');
-	data.forEach((song)=>{
-		content += `
-			<h3>${song.song}</h3>
-			<ul>
-				<li>${song.song}</li>
-				<li>${song.artist}</li>
-				<li>${song.album}</li>
-			</ul>
-		`;
+	arr.forEach((item) => {
+		content += `<option value="${item}">${item}</option>`;
 	});
-	$newDiv.append(content).append($mainRow);
-	$('#main').append($newDiv);
-};
+	$(selectId).html(content);
+}
 
-module.exports = Ui;
+//loads artists and albums to selectors
+$(window).ready(function() {
+	Music.loadSongs('../js/songs1.json').then((data)=>{
+		Filter.loadSelectorItems(data);
+		makeSelector(Filter.getArtists(), '#artists');
+		makeSelector(Filter.getAlbums(), '#albums');
+	});
+});
