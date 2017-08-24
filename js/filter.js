@@ -3,6 +3,7 @@ let Music = require('./data-loader.js');
 let Filter = {};
 let _artistList = [];
 let _albumList = [];
+let _filtered = [];
 
 // removes duplicate items from array
 function removeDuplicates(arr) {
@@ -24,7 +25,6 @@ Filter.loadSelectorItems = (data) => {
 };
 
 Filter.getArtists = () => {
-	// console.log("_artistList", _artistList);
 	return _artistList;
 };
 
@@ -32,9 +32,13 @@ Filter.getAlbums = () => {
 	return _albumList;
 };
 
+Filter.getFiltered = () => {
+	return _filtered;
+};
+
 //creates an array of objects that contain a given selection value
 Filter.filterBySelection = (selection, objArray) => {
-	let filtered = [];
+	_filtered = [];
 	let values = [];
 	objArray.forEach((obj) => {
 		values.push(Object.values(obj));
@@ -44,12 +48,12 @@ Filter.filterBySelection = (selection, objArray) => {
 	for (let i = 0; i < values.length; i++) {
 		for (let j = 0; j < values[i].length; j++) {
 			if (values[i][j] === selection) {
-				filtered.push(objArray[i]);
+				_filtered.push(objArray[i]);
 			}
 		}
 	}
-	console.log("filtered", filtered);
-	return filtered;
+	console.log("filtered", _filtered);
+	return _filtered;
 };
 
 module.exports = Filter;

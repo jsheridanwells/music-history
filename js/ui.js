@@ -27,20 +27,30 @@ function makeSelector(arr, selectId) {
 	$(selectId).html(content);
 }
 
+function makeAlbumSelector(obj, selectId) {
+	let content = '<option></option>';
+	obj.forEach((item) => {
+		content += `<option value="${item.album}">${item.album}</option>`;
+	});
+	let $newSelect = $('select').attr('id', selectId);
+	$newSelect.append(content);
+	$('#artist-album-select').append($newSelect);
+}
+
 //loads artists and albums to selectors
 $(window).ready(function() {
 	Music.loadSongs('../js/songs1.json').then((data)=>{
 		Filter.loadSelectorItems(data);
 		makeSelector(Filter.getArtists(), '#artists');
-		makeSelector(Filter.getAlbums(), '#albums');
 		listMusic(Music.getSongs());
 	});
 });
 
-$('select').change(() => {
+$('#artists').change(() => {
 	let value = $('select').find(':selected').text();
 	Music.loadSongs('../js/songs1.json')
 	.then((data)=>{
 		listMusic(Filter.filterBySelection(value, data));
+		makeAlbumSelector(Filter.getFiltered(), 'albums');
 	});
 });

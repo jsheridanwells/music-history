@@ -33,6 +33,7 @@ let Music = require('./data-loader.js');
 let Filter = {};
 let _artistList = [];
 let _albumList = [];
+let _filtered = [];
 
 // removes duplicate items from array
 function removeDuplicates(arr) {
@@ -54,7 +55,6 @@ Filter.loadSelectorItems = (data) => {
 };
 
 Filter.getArtists = () => {
-	// console.log("_artistList", _artistList);
 	return _artistList;
 };
 
@@ -62,9 +62,13 @@ Filter.getAlbums = () => {
 	return _albumList;
 };
 
+Filter.getFiltered = () => {
+	return _filtered;
+};
+
 //creates an array of objects that contain a given selection value
 Filter.filterBySelection = (selection, objArray) => {
-	let filtered = [];
+	_filtered = [];
 	let values = [];
 	objArray.forEach((obj) => {
 		values.push(Object.values(obj));
@@ -74,12 +78,12 @@ Filter.filterBySelection = (selection, objArray) => {
 	for (let i = 0; i < values.length; i++) {
 		for (let j = 0; j < values[i].length; j++) {
 			if (values[i][j] === selection) {
-				filtered.push(objArray[i]);
+				_filtered.push(objArray[i]);
 			}
 		}
 	}
-	console.log("filtered", filtered);
-	return filtered;
+	console.log("filtered", _filtered);
+	return _filtered;
 };
 
 module.exports = Filter;
@@ -191,21 +195,31 @@ function makeSelector(arr, selectId) {
 	$(selectId).html(content);
 }
 
+function makeAlbumSelector(obj, selectId) {
+	let content = '<option></option>';
+	obj.forEach((item) => {
+		content += `<option value="${item.album}">${item.album}</option>`;
+	});
+	let $newSelect = $('select').attr('id', selectId);
+	$newSelect.append(content);
+	$('#artist-album-select').append($newSelect);
+}
+
 //loads artists and albums to selectors
 $(window).ready(function() {
 	Music.loadSongs('../js/songs1.json').then((data)=>{
 		Filter.loadSelectorItems(data);
 		makeSelector(Filter.getArtists(), '#artists');
-		makeSelector(Filter.getAlbums(), '#albums');
 		listMusic(Music.getSongs());
 	});
 });
 
-$('select').change(() => {
+$('#artists').change(() => {
 	let value = $('select').find(':selected').text();
 	Music.loadSongs('../js/songs1.json')
 	.then((data)=>{
 		listMusic(Filter.filterBySelection(value, data));
+		makeAlbumSelector(Filter.getFiltered(), 'albums');
 	});
 });
 },{"./data-loader.js":1,"./filter.js":2}]},{},[1,2,3,4]);
