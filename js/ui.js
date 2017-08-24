@@ -4,7 +4,6 @@ let Music = require('./data-loader.js');
 
 //loads songs from json to List Music view
 function listMusic(data) {
-	console.log("firing");
 	let content = '';
 	data.forEach((item)=>{
 		content += `
@@ -35,5 +34,13 @@ $(window).ready(function() {
 		makeSelector(Filter.getArtists(), '#artists');
 		makeSelector(Filter.getAlbums(), '#albums');
 		listMusic(Music.getSongs());
+	});
+});
+
+$('select').change(() => {
+	let value = $('select').find(':selected').text();
+	Music.loadSongs('../js/songs1.json')
+	.then((data)=>{
+		listMusic(Filter.filterBySelection(value, data));
 	});
 });
