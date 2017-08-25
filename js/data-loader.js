@@ -3,7 +3,7 @@ let _songs = [];
 
 
 let Music = {
-	//load all music from the database when given an url
+	//loads all music from the database when given an url
 	loadSongs: function(url) {
 		return new Promise((resolve, reject)=>{
 			$.ajax({
@@ -19,9 +19,14 @@ let Music = {
 			});
 		});
 	},
-	//send songs data
+	//sends songs data
 	getSongs: function() {
+		console.log("_songs", _songs);
 		return _songs;
+	},
+	//adds song to _songs array
+	addSong: function(obj) {
+		_songs.push(obj);
 	}
 };
 

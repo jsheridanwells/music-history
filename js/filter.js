@@ -42,7 +42,6 @@ Filter.filterBySelection = (selection, objArray) => {
 	let values = [];
 	objArray.forEach((obj) => {
 		values.push(Object.values(obj));
-		console.log("values", values);
 	});
 	console.log("values", values);
 	for (let i = 0; i < values.length; i++) {
@@ -53,6 +52,7 @@ Filter.filterBySelection = (selection, objArray) => {
 		}
 	}
 	console.log("filtered", _filtered);
+	Filter.loadSelectorItems(_filtered);
 	return _filtered;
 };
 

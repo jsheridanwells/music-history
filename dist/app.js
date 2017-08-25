@@ -1,10 +1,49 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
+let Views = require('./views.js');
+let Music = require('./data-loader.js');
+let Ui = require('./ui.js');
+
+let makeSongObj = (song, artist, album) => {
+	let newSong = {};
+	newSong.song = song;
+	newSong.artist = artist;
+	newSong.album = album;
+	console.log("new songs", newSong);
+	Music.addSong(newSong);
+	return Music.getSongs();
+};
+
+$('#add-music-button').click(()=>{
+	let song = $('#song-field').val();
+	let artist = $('#artist-field').val();
+	let album = $('#album-field').val();
+	console.log(song, artist, album);
+	Ui.listMusic(makeSongObj(song, artist, album));
+	Views.showListMusic();
+});
+
+//1.  when the user fills out song fields
+
+//2. then clicks "add" button (#add-music-button)
+	//2.1 or enter key
+
+//3. get values of fields
+
+//4. add to _songs object
+
+//5. go to list-view
+
+//6. reload songs into DOM
+
+//7. reload artists and albums into selectors
+},{"./data-loader.js":2,"./ui.js":4,"./views.js":5}],2:[function(require,module,exports){
+'use strict';
 let _songs = [];
 
 
 let Music = {
-	//load all music from the database when given an url
+	//loads all music from the database when given an url
 	loadSongs: function(url) {
 		return new Promise((resolve, reject)=>{
 			$.ajax({
@@ -20,14 +59,19 @@ let Music = {
 			});
 		});
 	},
-	//send songs data
+	//sends songs data
 	getSongs: function() {
+		console.log("_songs", _songs);
 		return _songs;
+	},
+	//adds song to _songs array
+	addSong: function(obj) {
+		_songs.push(obj);
 	}
 };
 
 module.exports = Music;
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 let Music = require('./data-loader.js');
 let Filter = {};
@@ -72,7 +116,6 @@ Filter.filterBySelection = (selection, objArray) => {
 	let values = [];
 	objArray.forEach((obj) => {
 		values.push(Object.values(obj));
-		console.log("values", values);
 	});
 	console.log("values", values);
 	for (let i = 0; i < values.length; i++) {
@@ -83,95 +126,20 @@ Filter.filterBySelection = (selection, objArray) => {
 		}
 	}
 	console.log("filtered", _filtered);
+	Filter.loadSelectorItems(_filtered);
 	return _filtered;
 };
 
 module.exports = Filter;
-},{"./data-loader.js":1}],3:[function(require,module,exports){
-// 'use strict';
-// let Ui = require('./ui.js');
-
-// //object to store new song information
-// var playListObj = function(song, artist, album) {
-// 	this.song = song,
-// 	this.artist = artist,
-// 	this.album = album
-// };
-
-// //show addSong menu
-// function viewAdd() {
-// 	$('#add-show').attr('class', 'disabled');
-// 	$('#list-show').removeAttr('class');
-// 	$('#add-music-view').css('display', 'flex');
-// 	$('#list-music-view').css('display', 'none');
-// }
-
-// //hide addSong menu
-// function viewList() {
-// 	$('#list-show').attr('class', 'disabled');
-// 	$('#add-show').removeAttr('class');
-// 	$('#list-music-view').css('display', 'flex');
-// 	$('#add-music-view').css('display', 'none');
-// }
-
-// //add new song object to playlist
-// function addToList(song, artist, album) {
-// 	let newSong = [];
-// 	newSong.push(new playListObj(song, artist, album));
-// 	Ui.showPlaylist(newSong);
-// }
-
-
-// function clearForm() {
-// 	$('#song-field').val('');
-// 	$('#artist-field').val('');
-// 	$('#album-field').val('');
-// }
-
-// $('#add-show').click(viewAdd);
-
-// $('#list-show').click(viewList);
-
-// //takes values in addSong form fields when add button clicked
-// $('#add-music-button').click(function() {
-// 	if (    $('#song-field').val() !== '' &&
-// 			$('#artist-field').val() !== '' &&
-// 			$('#album-field').val() !== '') {
-// 		addToList(
-// 				$('#song-field').val(),
-// 				$('#artist-field').val(),
-// 				$('#album-field').val()
-// 			);
-// 	}
-// 	clearForm();
-// 	viewList();
-// });
-
-// //takes values in addSong form fields when enter key is pressed
-// $('#add-music-view').keyup(function(e){
-// 	if (e.which === 13) {
-// 		if (    $('#song-field').val() !== '' &&
-// 				$('#artist-field').val() !== '' &&
-// 				$('#album-field').val() !== '') {
-// 			addToList(
-// 					$('#song-field').val(),
-// 					$('#artist-field').val(),
-// 					$('#album-field').val()
-// 				);
-// 		} else {
-// 			$('#add-music-view').off('click');
-// 		}
-// 	clearForm();
-// 	viewList();
-// 	}
-// });
-},{}],4:[function(require,module,exports){
+},{"./data-loader.js":2}],4:[function(require,module,exports){
 'use strict';
 let Filter = require('./filter.js');
 let Music = require('./data-loader.js');
 
+let Ui = {};
+
 //loads songs from json to List Music view
-function listMusic(data) {
+Ui.listMusic = (data) => {
 	let content = '';
 	data.forEach((item)=>{
 		content += `
@@ -184,7 +152,7 @@ function listMusic(data) {
 		`;
 	});
 	$('#main').html(content);
-}
+};
 
 //creates selectors with each item in an array as an option
 function makeSelector(arr, selectId) {
@@ -200,26 +168,62 @@ function makeAlbumSelector(obj, selectId) {
 	obj.forEach((item) => {
 		content += `<option value="${item.album}">${item.album}</option>`;
 	});
-	let $newSelect = $('select').attr('id', selectId);
+	let $newSelect = $('<select></select>').attr('id', selectId);
 	$newSelect.append(content);
 	$('#artist-album-select').append($newSelect);
 }
 
-//loads artists and albums to selectors
+Ui.loadSelectors = (data) => {
+	Filter.loadSelectorItems(data);
+	makeSelector(Filter.getArtists(), '#artists');
+	makeSelector(Filter.getAlbums(), '#albums');
+	Ui.listMusic(Music.getSongs());
+};
+
+//loads artists to selectors, loads all songs to list-music-view
 $(window).ready(function() {
 	Music.loadSongs('../js/songs1.json').then((data)=>{
-		Filter.loadSelectorItems(data);
-		makeSelector(Filter.getArtists(), '#artists');
-		listMusic(Music.getSongs());
+		Ui.loadSelectors(data);
 	});
 });
 
+//when artist selector is changed, loads only songs from artist, loads albums to selector
 $('#artists').change(() => {
 	let value = $('select').find(':selected').text();
-	Music.loadSongs('../js/songs1.json')
-	.then((data)=>{
-		listMusic(Filter.filterBySelection(value, data));
-		makeAlbumSelector(Filter.getFiltered(), 'albums');
-	});
+	Ui.listMusic(Filter.filterBySelection(value, Music.getSongs()));
 });
-},{"./data-loader.js":1,"./filter.js":2}]},{},[1,2,3,4]);
+
+$('#albums').change(() => {
+	let value = $('#albums').find(':selected').text();
+	Ui.listMusic(Filter.filterBySelection(value, Music.getSongs()));
+});
+
+module.exports = Ui;
+
+},{"./data-loader.js":2,"./filter.js":3}],5:[function(require,module,exports){
+'use strict';
+
+//show add music view, hide list music view
+function showAddMusic() {
+	console.log("working");
+	$('#add-show').attr('class', 'disabled');
+	$('#list-show').removeAttr('class');
+	$('#add-music-view').css('display', 'flex');
+	$('#list-music-view').css('display', 'none');
+}
+
+//show list music view, hide add music view
+function showListMusic() {
+	console.log("working");
+	$('#list-show').attr('class', 'disabled');
+	$('#add-show').removeAttr('class');
+	$('#list-music-view').css('display', 'flex');
+	$('#add-music-view').css('display', 'none');
+}
+
+$('#add-show').click(showAddMusic);
+
+$('#list-show').click(showListMusic);
+
+module.exports = {showListMusic};
+},{}]},{},[1,2,3,4,5]);
