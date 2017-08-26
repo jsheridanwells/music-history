@@ -1,0 +1,68 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Shadows+Into+Light');
+$shadows: 'Shadows Into Light', cursive;
+$montserrat:  'Montserrat', sans-serif;
+
+h1, h2 {
+	font-family: $shadows;
+}
+
+h3 {
+	font-size: 2em;
+}
+
+p, li, h3 {
+	font-family: $montserrat;
+}
+
+/*Div Colors*/
+@mixin white() {color:#000 !important; background-color:#f4f4f4 !important; border: 1px solid #92b6d5 !important}
+@mixin lightblue() {color:#000 !important; background-color:#d3e1ee !important; border: 1px solid #92b6d5 !important}
+@mixin medblue()  {color:#fff !important; background-color:#77a3ca !important; border: 1px solid #92b6d5 !important}
+@mixin darkblue() {color:#fff !important; background-color:#325c81 !important; border: 1px solid #92b6d5 !important}
+
+/*Containers*/
+body {
+	@include medblue()
+}
+.container {
+	width: 80%;
+}
+
+/*Header Styles*/
+.navbar {margin-top: 1.4em; @include lightblue()}
+nav {@include darkblue()}
+
+#brand {
+	font-family: $shadows;
+	font-size: 5em;
+}
+
+
+p.description {
+	margin-left: 2em;
+}
+
+/*List Music View Styles*/
+
+.aside, .main {
+	margin-top: 3em;
+	margin-left: 0em;
+	padding: 1em;
+	@include lightblue();
+}
+
+.main ul {
+	list-style-type: none;
+}
+
+/*Add Music View Styles*/
+
+
+/*Disabled Views*/
+.disabled {
+	display: none;
+}
+
+
+

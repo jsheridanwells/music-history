@@ -8,58 +8,86 @@
 	</head>
 	<body>
 		<div class="container">
-			<nav>
-				<ul>
-					<li><a href="#" class="disabled" id="list-show">List Music</a></li>
-					<li><a href="#" id="add-show"> Add Music</a></li>
-				</ul>
+
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#"><h1 id="brand">Lister</h1></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav mr-auto">
+			      <li class="nav-item active">
+			        <a id="list-show" class="nav-link" href="#">List Music <span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a id="add-show" class="nav-link" href="#">Add Music</a>
+			      </li>
+			    </ul>
+			    <ul class="navbar-nav mr-auto">
+			    	<li class="nav-item active"><a class="nav-link" href="#">Sign Up / Log In</a></li>
+			    </ul>
+			  </div>
 			</nav>
+			<nav class="description">
+				<p class="description">A Music List Creator</p>
+			</nav>
+		</div>
+		<div class="container">
 			<div id="list-music-view">
-				<aside>
-					<form>
-						<fieldset id="artist-album-select">
-							<p>Artist:</p>
-							<select id="artists">
-								<!-- <option value="">Grateful Dead</option>
-								<option value="">Bob Weir</option>
-								<option value="">Dylan and the Dead</option>
-								<option value="">Phil Lesh and Friends</option>
-								<option value="">Ratdog</option> -->
-							</select>
-							<p>Album:</p>
-							<select id="albums">
-								<!-- <option value="">Workingman's Dead</option>
-								<option value="">Blue Mountain</option>
-								<option value="">Dylan and the Dead</option>
-								<option value="">There and Back Again</option>
-								<option value="">Evening Moods</option> -->
-							</select>
-						</fieldset>
-						<!-- <fieldset>
-							<button type="button" id="filter-btn">Filter</button>
-						</fieldset> -->
-					</form>
-				</aside>
-				<main id="main">
-					<!-- <h3>Song Name</h3>
-					<ul>
-						<li>Song Name</li>
-						<li>Album Name</li>
-						<li>Genre</li>
-					</ul>
-					<h3>Song Name</h3>
-					<ul>
-						<li>Song Name</li>
-						<li>Album Name</li>
-						<li>Genre</li>
-					</ul>
-					<h3>Song Name</h3>
-					<ul>
-						<li>Song Name</li>
-						<li>Album Name</li>
-						<li>Genre</li>
-					</ul> -->
-				</main>
+				<div class="row list-music-row">
+					<div class="col-md-3 aside">
+						<aside>
+							<h2>Filter By:</h2>
+							<form>
+								<fieldset id="artist-album-select">
+									<p>Artist:</p>
+									<select id="artists">
+										<!-- <option value="">Grateful Dead</option>
+										<option value="">Bob Weir</option>
+										<option value="">Dylan and the Dead</option>
+										<option value="">Phil Lesh and Friends</option>
+										<option value="">Ratdog</option> -->
+									</select>
+									<p>Album:</p>
+									<select id="albums">
+										<!-- <option value="">Workingman's Dead</option>
+										<option value="">Blue Mountain</option>
+										<option value="">Dylan and the Dead</option>
+										<option value="">There and Back Again</option>
+										<option value="">Evening Moods</option> -->
+									</select>
+								</fieldset>
+								<!-- <fieldset>
+									<button type="button" id="filter-btn">Filter</button>
+								</fieldset> -->
+							</form>
+						</aside>
+					</div>
+					<div class="col-md-9 main">
+						<main id="main">
+							<!-- <h3>Song Name</h3>
+							<ul>
+								<li>Song Name</li>
+								<li>Album Name</li>
+								<li>Genre</li>
+							</ul>
+							<h3>Song Name</h3>
+							<ul>
+								<li>Song Name</li>
+								<li>Album Name</li>
+								<li>Genre</li>
+							</ul>
+							<h3>Song Name</h3>
+							<ul>
+								<li>Song Name</li>
+								<li>Album Name</li>
+								<li>Genre</li>
+							</ul> -->
+						</main>
+					</div>
+				</div>
+
 			</div>
 			<div id="add-music-view">
 				<label for="name-field">Song Name:</label>
