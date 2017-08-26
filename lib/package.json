@@ -12,9 +12,11 @@
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "jshint-stylish": "^2.2.1",
-    "matchdep": "^2.0.0"
+    "matchdep": "^2.0.0",
+    "sass": "^1.0.0-beta.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
